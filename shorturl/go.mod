@@ -1,4 +1,4 @@
-module likegozero
+module shorturl
 
 go 1.25.1
 

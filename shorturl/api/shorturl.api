@@ -1,0 +1,35 @@
+syntax = "v1"
+
+info (
+	title:  "微服务网关demo1"
+	desc:   "微服务网关demo2"
+	author: "huangzehui"
+	email:  "18612611241@163.com"
+)
+
+type (
+	expandReq {
+		shorten string `form:"shorten"`
+	}
+	expandResp {
+		url string `json:"url"`
+	}
+)
+
+type (
+	shortenReq {
+		url string `form:"url"`
+	}
+	shortenResp {
+		shorten string `json:"shorten"`
+	}
+)
+
+service shorturl-api {
+	@handler ShortenHandler
+	get /shorten (shortenReq) returns (shortenResp)
+
+	@handler ExpandHandler
+	get /expand (expandReq) returns (expandResp)
+}
+

@@ -7,7 +7,4 @@ import "github.com/zeromicro/go-zero/rest"
 
 type Config struct {
 	rest.RestConf
-
-	Value1 string
-	Value2 int
 }

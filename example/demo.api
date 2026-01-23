@@ -12,8 +12,5 @@ type Response {
 service demo-api {
 	@handler DemoHandler
 	get /from/:name (Request) returns (Response)
-
-	@handler DemoHandler2
-	get /from2/:name (Request) returns (Response)
 }
 

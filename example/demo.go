@@ -6,11 +6,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/zeromicro/go-zero/core/service"
 
-	"likegozero/api/demo/internal/config"
-	"likegozero/api/demo/internal/handler"
-	"likegozero/api/demo/internal/svc"
+	"likegozero/example/internal/config"
+	"likegozero/example/internal/handler"
+	"likegozero/example/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
@@ -21,23 +20,10 @@ var configFile = flag.String("f", "etc/demo-api.yaml", "the config file")
 func main() {
 	flag.Parse()
 
-	//加载配置文件到结构体C中
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
-	println(c.Value1)
-	println(c.Value2)
-
-	server := rest.MustNewServer(rest.RestConf{
-		Port: 8002,
-		ServiceConf: service.ServiceConf{
-			DevServer: service.DevServerConfig{
-				Enabled:    true,
-				Port:       8080,
-				HealthPath: "/ping",
-			},
-		},
-	})
+	server := rest.MustNewServer(c.RestConf)
 	defer server.Stop()
 
 	ctx := svc.NewServiceContext(c)
