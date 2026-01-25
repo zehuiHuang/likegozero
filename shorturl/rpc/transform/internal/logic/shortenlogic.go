@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"fmt"
 	"github.com/zeromicro/go-zero/core/hash"
 	"shorturl/rpc/transform/model"
 
@@ -27,7 +28,7 @@ func NewShortenLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ShortenLo
 
 func (l *ShortenLogic) Shorten(in *transform.ShortenReq) (*transform.ShortenResp, error) {
 	// add your logic here and delete this line
-
+	fmt.Println("Shorten------查询数据库")
 	//插入数据库数据
 	key := hash.Md5Hex([]byte(in.Url))[:6]
 	_, err := l.svcCtx.Model.Insert(l.ctx, &model.Shorturl{

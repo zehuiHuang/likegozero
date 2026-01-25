@@ -5,6 +5,7 @@ package logic
 
 import (
 	"context"
+	"fmt"
 	"shorturl/rpc/transform/transformer"
 
 	"shorturl/api/internal/svc"
@@ -29,7 +30,7 @@ func NewExpandLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ExpandLogi
 
 func (l *ExpandLogic) Expand(req *types.ExpandReq) (resp *types.ExpandResp, err error) {
 	// add your logic here and delete this line
-
+	fmt.Println("Expand-------------")
 	//调用rpc接口
 	rpcResp, err := l.svcCtx.Transformer.Expand(l.ctx, &transformer.ExpandReq{
 		Shorten: req.Shorten,
