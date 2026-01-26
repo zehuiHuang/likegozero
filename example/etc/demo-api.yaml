@@ -1,3 +1,10 @@
 Name: demo-api
 Host: 0.0.0.0
 Port: 8888
+#限流,并发控制
+MaxConns: 100
+Auth:
+  AccessSecret: "12345678901234567890123456789012"
+  AccessExpire: 20
+
+

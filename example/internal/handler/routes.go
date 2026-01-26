@@ -6,6 +6,7 @@ package handler
 import (
 	"net/http"
 
+	user "likegozero/example/internal/handler/user"
 	"likegozero/example/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -20,5 +21,21 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: DemoHandler(serverCtx),
 			},
 		},
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			//路由中间件
+			[]rest.Middleware{serverCtx.UserAgentMiddleware},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/from/:name",
+					Handler: user.DemoHandlerV1Handler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithSignature(serverCtx.Config.Signature),
+		rest.WithPrefix("/v1"),
 	)
 }

@@ -6,27 +6,27 @@ package logic
 import (
 	"context"
 
-	"likegozero/example/internal/svc"
-	"likegozero/example/internal/types"
+	"likegozero/api/demo/internal/svc"
+	"likegozero/api/demo/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type DemoLogic struct {
+type DemoHandler2Logic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewDemoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DemoLogic {
-	return &DemoLogic{
+func NewDemoHandler2Logic(ctx context.Context, svcCtx *svc.ServiceContext) *DemoHandler2Logic {
+	return &DemoHandler2Logic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *DemoLogic) Demo(req *types.Request) (resp *types.Response, err error) {
+func (l *DemoHandler2Logic) DemoHandler2(req *types.Request) (resp *types.Response, err error) {
 	resp = new(types.Response)
 	resp.Message = req.Name
 	return
